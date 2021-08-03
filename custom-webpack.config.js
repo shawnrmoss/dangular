@@ -35,7 +35,6 @@ module.exports = {
   node: { global: true },
   plugins: [
     new webpack.EnvironmentPlugin({
-      NODE_ENV: 'development',
       HELLO_CANISTER_ID: canisters["hello"]
     }),
     new webpack.ProvidePlugin({
