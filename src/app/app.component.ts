@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-
-const helloService = require('src/declarations/hello').hello;
+import { Observable } from 'rxjs';
+import { HelloService } from './hello.service';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +9,10 @@ const helloService = require('src/declarations/hello').hello;
 })
 export class AppComponent {
   title = 'dAngular';
-
   inputText = '';
+  inputText$: Observable<string> | undefined;
 
-  constructor(){
+  constructor(public helloService: HelloService){
 
   }
 
@@ -20,7 +20,7 @@ export class AppComponent {
 
 
 
-  async myClick(text: string){
-    this.inputText = await helloService.greet(text);
+  myClick(greeting: string){
+    this.inputText$ = this.helloService.greet(greeting);
   }
 }
