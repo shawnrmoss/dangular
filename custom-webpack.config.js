@@ -1,5 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
+const TerserPlugin = require("terser-webpack-plugin");
 
 let localCanisters, prodCanisters, canisters;
 
@@ -31,8 +32,14 @@ function initCanisterIds() {
 
 initCanisterIds();
 
+const isDevelopment = process.env.NODE_ENV !== "production";
+
 module.exports = {
   node: { global: true },
+  optimization: {
+    minimize: !isDevelopment,
+    minimizer: [new TerserPlugin()],
+  },
   plugins: [
     new webpack.EnvironmentPlugin({
       HELLO_CANISTER_ID: canisters["hello"]
