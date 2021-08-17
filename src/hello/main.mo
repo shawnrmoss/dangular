@@ -1,5 +1,3 @@
-import AssocList "mo:base/AssocList";
-import List "mo:base/List";
 import Text "mo:base/Text";
 
 actor {
