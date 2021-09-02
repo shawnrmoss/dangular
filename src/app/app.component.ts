@@ -23,13 +23,8 @@ export class AppComponent implements OnInit {
     this.count$ = this.store.pipe(select(selectCount));
   }
 
-  onIncrement(){
-    // console.log('incrementCount');
-    // this.store.dispatch(incrementCount());    
+  onIncrement(){    
+    this.store.dispatch(incrementCount());    
     this.count$ = this.counterService.getValue();
-  }
-
-  myClick(greeting: string){
-    this.inputText$ = this.helloService.greet(greeting);
   }
 }
