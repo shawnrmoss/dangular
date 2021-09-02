@@ -10,7 +10,7 @@ export class CounterService {
 
   constructor() { }
 
-  increment(): Observable<undefined> {    
+  increment(): Observable<bigint> {     
     return from(counterService.increment());
   }
 

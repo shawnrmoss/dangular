@@ -30,8 +30,8 @@ export class CounterEffects {
       ofType(CounterActions.incrementCount),
       concatMap((_) => {        
         return this.counterService.increment().pipe(
-          map((_) => {            
-            return CounterActions.loadCountersSuccess({ count: BigInt(2) });
+          map((count: bigint) => {            
+            return CounterActions.loadCountersSuccess({ count });
           }),
           catchError((error) => of(CounterActions.loadCountersFailure({ error })))
         );
