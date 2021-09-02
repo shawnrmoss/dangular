@@ -1,30 +1,43 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, concatMap } from 'rxjs/operators';
-import { Observable, EMPTY, of } from 'rxjs';
+import { catchError, map, concatMap, switchMap, tap } from 'rxjs/operators';
+import { of, pipe } from 'rxjs';
 
 import * as CounterActions from '../actions/counter.actions';
+import { CounterService } from '../../services';
 
 
 
 @Injectable()
 export class CounterEffects {
 
-  loadCounters$ = createEffect(() => {
-    return this.actions$.pipe( 
-
+  loadCounters$ = createEffect(() => 
+    this.actions$.pipe( 
       ofType(CounterActions.loadCounters),
-      concatMap(() =>
-        /** An EMPTY observable only emits completion. Replace with your own observable API request */
-        EMPTY.pipe(
-          map(data => CounterActions.loadCountersSuccess({ data })),
-          catchError(error => of(CounterActions.loadCountersFailure({ error }))))
-      )
-    );
-  });
+      concatMap((_) => {        
+        return this.counterService.getValue().pipe(
+          map((count: bigint) => {
+            return CounterActions.loadCountersSuccess({ count });
+          }),
+          catchError((error) => of(CounterActions.loadCountersFailure({ error })))
+        );
+      })
+    )
+  );
 
+  incrementCount$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CounterActions.incrementCount),
+      concatMap((_) => {        
+        return this.counterService.increment().pipe(
+          map((_) => {            
+            return CounterActions.loadCountersSuccess({ count: BigInt(2) });
+          }),
+          catchError((error) => of(CounterActions.loadCountersFailure({ error })))
+        );
+      })      
+    )
+  );
 
-
-  constructor(private actions$: Actions) {}
-
+  constructor(private actions$: Actions, protected counterService: CounterService) {}
 }

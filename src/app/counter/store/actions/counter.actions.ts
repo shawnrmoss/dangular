@@ -6,7 +6,7 @@ export const loadCounters = createAction(
 
 export const loadCountersSuccess = createAction(
   '[Counter] Load Counters Success',
-  props<{ data: any }>()
+  props<{ count: bigint }>()
 );
 
 export const loadCountersFailure = createAction(
@@ -14,7 +14,6 @@ export const loadCountersFailure = createAction(
   props<{ error: any }>()
 );
 
-export const loadCountersFailuressdd = createAction(
-  '[Counter] Load Counters Failure',
-  props<{ error: any }>()
+export const incrementCount = createAction(
+  '[Counter] Increment Count'
 );

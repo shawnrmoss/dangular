@@ -33,7 +33,11 @@
 
   <!-- Resources -->
   <h2>Resources</h2>
-  <p>Here are some links to help you get started:</p>
+  <p>Count: {{ count$ | async }}</p>
+
+  <button (click)="onIncrement()">
+    Increment
+  </button>
 
   {{ inputText$ | async }}
   <input type="text" #input />
