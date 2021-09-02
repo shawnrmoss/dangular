@@ -1,7 +1,11 @@
 {
   "canisters": {
     "hello": {
-      "main": "src/hello/main.mo",
+      "main": "src/dfx/hello.mo",
+      "type": "motoko"
+    },
+    "counter": {
+      "main": "src/dfx/counter.mo",
       "type": "motoko"
     },
     "dAngular": {
