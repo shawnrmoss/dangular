@@ -16,10 +16,6 @@ export class AppComponent {
 
   }
 
-
-
-
-
   myClick(greeting: string){
     this.inputText$ = this.helloService.greet(greeting);
   }

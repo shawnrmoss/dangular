@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CounterModule } from './counter/counter.module';
@@ -13,7 +14,11 @@ import { CounterModule } from './counter/counter.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot({      
+      router: routerReducer,      
+    }),
+    // Connects RouterModule with StoreModule, uses MinimalRouterStateSerializer by default
+    StoreRouterConnectingModule.forRoot(),
     EffectsModule.forRoot([]),
     CounterModule
   ],
