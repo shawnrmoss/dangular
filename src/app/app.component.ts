@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   inputText$: Observable<string> | undefined;
   count$: Observable<bigint> | undefined;
 
-  constructor(public helloService: HelloService, public counterService: CounterService, protected store: Store<any>){
+  constructor(protected store: Store<any>){
     this.store.dispatch(loadCounters());
   }
 
@@ -24,7 +24,6 @@ export class AppComponent implements OnInit {
   }
 
   onIncrement(){    
-    this.store.dispatch(incrementCount());    
-    this.count$ = this.counterService.getValue();
+    this.store.dispatch(incrementCount());        
   }
 }
