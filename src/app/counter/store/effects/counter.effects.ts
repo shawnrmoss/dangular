@@ -42,7 +42,7 @@ export class CounterEffects {
   
   failEffect$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(...CounterActions.CounterFailTypes),
+      ofType(CounterActions.loadCountersFail),
       tap((val) => console.log('*****FAIL EFFECT***** - ' + val + ' - ' + new Date())),     
     )
   );
