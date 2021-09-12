@@ -19,7 +19,7 @@ export class CounterEffects {
           map((count: bigint) => {
             return CounterActions.loadCountersSuccess({ count });
           }),
-          catchError((error) => of(CounterActions.loadCountersFailure({ error })))
+          catchError((error) => of(CounterActions.loadCountersFail({ error })))
         );
       })
     )
@@ -33,11 +33,20 @@ export class CounterEffects {
           map((count: bigint) => {            
             return CounterActions.loadCountersSuccess({ count });
           }),
-          catchError((error) => of(CounterActions.loadCountersFailure({ error })))
+          catchError((error) => of(CounterActions.loadCountersFail({ error })))
         );
       })      
     )
   );
 
+  
+  // failEffect$ = createEffect(() =>
+  //   this.actions$.pipe(
+  //     ofType(CounterActions.loadCountersFail),
+  //     tap((val) => console.log('*****FAIL EFFECT***** - ' + val + ' - ' + new Date())),     
+  //   )
+  // );
+
   constructor(private actions$: Actions, protected counterService: CounterService) {}
+  
 }

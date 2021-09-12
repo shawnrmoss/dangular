@@ -22,7 +22,7 @@ export const reducer = createReducer(
       loading: count,
     };
   }),
-  on(CounterActions.loadCountersFailure, (state, action) => state),
+  on(CounterActions.loadCountersFail, (state, action) => state),
 
 );
 
