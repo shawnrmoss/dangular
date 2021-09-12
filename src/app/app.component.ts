@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   title = 'dAngular';
   inputText = '';
   inputText$: Observable<string> | undefined;
-  count$: Observable<bigint> | undefined;
+  count$: Observable<number> | undefined;
 
   constructor(protected store: Store<any>){
     this.store.dispatch(loadCounters());

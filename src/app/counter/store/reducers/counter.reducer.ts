@@ -4,11 +4,11 @@ import * as CounterActions from '../actions/counter.actions';
 export const counterFeatureKey = 'counter';
 
 export interface State {
-  count: bigint;  
+  count: number;  
 }
 
 export const initialState: State = {
-  count: BigInt(0),
+  count: 0,
 };
 
 

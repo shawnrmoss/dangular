@@ -17,7 +17,7 @@ export const loadCounters = createAction(
 
 export const loadCountersSuccess = createAction(
   CounterActionTypes.LoadCountersSuccess,
-  props<{ count: bigint }>()
+  props<{ count: number }>()
 );
 
 export const loadCountersFail = createAction(

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, concatMap, switchMap, tap } from 'rxjs/operators';
-import { of, pipe } from 'rxjs';
+import { catchError, map, concatMap, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 import * as CounterActions from '../actions/counter.actions';
 import { CounterService } from '../../services';
@@ -17,7 +17,7 @@ export class CounterEffects {
       concatMap((_) => {        
         return this.counterService.getValue().pipe(
           map((count: bigint) => {
-            return CounterActions.loadCountersSuccess({ count });
+            return CounterActions.loadCountersSuccess({ count: Number(count) });
           }),
           catchError((error) => of(CounterActions.loadCountersFail({ error })))
         );
@@ -31,7 +31,7 @@ export class CounterEffects {
       concatMap((_) => {        
         return this.counterService.increment().pipe(
           map((count: bigint) => {            
-            return CounterActions.loadCountersSuccess({ count });
+            return CounterActions.loadCountersSuccess({ count: Number(count) });
           }),
           catchError((error) => of(CounterActions.loadCountersFail({ error })))
         );
@@ -40,12 +40,12 @@ export class CounterEffects {
   );
 
   
-  // failEffect$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(CounterActions.loadCountersFail),
-  //     tap((val) => console.log('*****FAIL EFFECT***** - ' + val + ' - ' + new Date())),     
-  //   )
-  // );
+  failEffect$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(...CounterActions.CounterFailTypes),
+      tap((val) => console.log('*****FAIL EFFECT***** - ' + val + ' - ' + new Date())),     
+    )
+  );
 
   constructor(private actions$: Actions, protected counterService: CounterService) {}
   
