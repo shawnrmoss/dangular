@@ -8,6 +8,7 @@ import { CounterModule } from './counter/counter.module';
 import { metaReducers, reducers } from './store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { environment } from 'src/environments/environment';
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([]),
-    CounterModule
+    CounterModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

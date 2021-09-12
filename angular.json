@@ -41,6 +41,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/app/themes/default-theme.scss",
               "src/styles.scss"
             ],
             "scripts": []
