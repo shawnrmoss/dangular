@@ -15,14 +15,27 @@ export const initialState: State = {
 export const reducer = createReducer(
   initialState,
 
-  on(CounterActions.loadCounters, state => state),
+  on(CounterActions.loadCounters, (state) => {
+    return {
+      ...state,
+      loading: true,
+    };
+  }),
   on(CounterActions.loadCountersSuccess, (state, { count }) => {
     return {
       ...state,
-      loading: count,
+      count: count,
+      loading: false,
+      loaded: true,
     };
   }),
-  on(CounterActions.loadCountersFail, (state, action) => state),
+  on(CounterActions.loadCountersFail, (state) => {
+    return {
+      ...state,
+      loading: false,
+      loaded: false,
+    };
+  }),
 
 );
 

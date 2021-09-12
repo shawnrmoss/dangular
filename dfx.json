@@ -1,16 +1,12 @@
 {
-  "canisters": {
-    "hello": {
-      "main": "src/dfx/hello.mo",
-      "type": "motoko"
-    },
+  "canisters": {    
     "counter": {
       "main": "src/dfx/counter.mo",
       "type": "motoko"
     },
     "dAngular": {
       "dependencies": [
-        "hello"
+        "counter"
       ],
       "frontend": {
         "entrypoint": "dist/dAngular/index.html"

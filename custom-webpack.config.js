@@ -41,8 +41,8 @@ module.exports = {
     minimizer: [new TerserPlugin()],
   },
   plugins: [
-    new webpack.EnvironmentPlugin({
-      HELLO_CANISTER_ID: canisters["hello"]
+    new webpack.EnvironmentPlugin({      
+      COUNTER_CANISTER_ID: canisters["counter"]
     }),
     new webpack.ProvidePlugin({
       Buffer: [require.resolve("buffer/"), "Buffer"],

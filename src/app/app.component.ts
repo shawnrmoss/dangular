@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { CounterService, incrementCount, loadCounters, selectCount } from './counter';
-import { HelloService } from './hello.service';
+import { incrementCount, loadCounters, selectCount } from './counter';
+
+import { _SERVICE } from 'src/declarations/counter/counter.did';
+const counterService = require('src/declarations/counter').counter as _SERVICE;
 
 @Component({
   selector: 'app-root',
@@ -24,6 +26,6 @@ export class AppComponent implements OnInit {
   }
 
   onIncrement(){    
-    this.store.dispatch(incrementCount());        
+    this.store.dispatch(incrementCount());            
   }
 }
