@@ -4,7 +4,7 @@ import * as CounterActions from '../actions/counter.actions';
 export const counterFeatureKey = 'counter';
 
 export interface State {
-  count: number;  
+  count: number;
 }
 
 export const initialState: State = {
@@ -34,6 +34,12 @@ export const reducer = createReducer(
       ...state,
       loading: false,
       loaded: false,
+    };
+  }),
+  on(CounterActions.incrementCount, (state) => {
+    return {
+      ...state,
+      count: state.count + 1,
     };
   }),
 

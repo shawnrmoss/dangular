@@ -1,10 +1,11 @@
 import { createAction, props } from '@ngrx/store';
 
-export enum CounterActionTypes {  
+export enum CounterActionTypes {
   LoadCounters = '[Counter] Load',
   LoadCountersSuccess = '[Counter] Load Success',
   LoadCountersFail = '[Counter] Load Fail',
-  IncrementCounter = '[Counter] Increment',  
+  IncrementCounter = '[Counter] Increment',
+  IncrementCounterSuccess = '[Counter] Increment Success',
 }
 
 export let CounterFailTypes = [
@@ -27,4 +28,8 @@ export const loadCountersFail = createAction(
 
 export const incrementCount = createAction(
   CounterActionTypes.IncrementCounter
+);
+
+export const incrementSuccess = createAction(
+  CounterActionTypes.IncrementCounterSuccess
 );

@@ -11,10 +11,10 @@ import { CounterService } from '../../services';
 @Injectable()
 export class CounterEffects {
 
-  loadCounters$ = createEffect(() => 
-    this.actions$.pipe( 
+  loadCounters$ = createEffect(() =>
+    this.actions$.pipe(
       ofType(CounterActions.loadCounters),
-      concatMap((_) => {        
+      concatMap((_) => {
         return this.counterService.getValue().pipe(
           map((count: bigint) => {
             return CounterActions.loadCountersSuccess({ count: Number(count) });
@@ -28,25 +28,25 @@ export class CounterEffects {
   incrementCount$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CounterActions.incrementCount),
-      concatMap((_) => {        
+      concatMap((_) => {
         return this.counterService.increment().pipe(
-          map((count: bigint) => {            
-            return CounterActions.loadCountersSuccess({ count: Number(count) });
+          map((_) => {
+            return CounterActions.incrementSuccess();
           }),
-          catchError((error) => of(CounterActions.loadCountersFail({ error })))
+          catchError((error) => of(CounterActions.loadCounters()))
         );
-      })      
+      })
     )
   );
 
-  
+
   failEffect$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CounterActions.loadCountersFail),
-      tap((val) => console.log('*****FAIL EFFECT***** - ' + val + ' - ' + new Date())),     
+      tap((val) => console.log('*****FAIL EFFECT***** - ' + val + ' - ' + new Date())),
     )
   );
 
   constructor(private actions$: Actions, protected counterService: CounterService) {}
-  
+
 }
